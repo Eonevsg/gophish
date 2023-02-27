@@ -352,6 +352,20 @@ function load() {
         })
 }
 
+function callGpt(){    
+    var question = {}
+
+    question.hintText = $("#question").val()
+    $("#text .gophish-editor").first().val("Generating response...")
+    api.chatGpt.post(question)
+        .success(function(response) {
+            $("#text .gophish-editor").first().val(response)
+        })
+        .error(function(){
+            errorFlash("Error fetching response from Chat GPT")
+        })
+}
+
 $(document).ready(function () {
     // Setup multiple modals
     // Code based on http://miles-by-motorcycle.com/static/bootstrap-modal/index.html
@@ -418,4 +432,7 @@ $(document).ready(function () {
     });
     load()
 
+    $("#questionButton").click(async () => {
+        callGpt()
+    })
 })

@@ -165,6 +165,13 @@ var api = {
             return query("/templates/" + id, "DELETE", {}, false)
         }
     },
+    // chatGpt contains the endpoints for /gpt
+    chatGpt: {
+        // post() - Posts a question to get response
+        post: function (question) {
+            return query("/gpt", "POST", question, true)
+        },
+    },
     // pages contains the endpoints for /pages
     pages: {
         // get() - Queries the API for GET /pages
